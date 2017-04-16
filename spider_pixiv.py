@@ -23,8 +23,7 @@ class Pixiv:
         self.dailyurl = 'http://www.pixiv.net/ranking.php?mode=daily'
         self.picurl = 'http://www.pixiv.net/ranking.php?mode=daily&content=illust'
         self.name = ''
-        f = open('cookies.txt', 'r')
-        self.cookies = eval(f.read())
+
 
     # 获取此次session的post_key
     def Login(self):
@@ -69,6 +68,8 @@ class Pixiv:
                 print '--------------------------------------------------------------------------------------------------------'
 
     def download(self,url):
+        f = open('cookies.txt', 'r')
+        self.cookies = eval(f.read())
         html = requests.get(url,cookies=self.cookies)
         result_url = re.findall(
             'class="_icon sprites-info open-info ui-modal-trigger"></i></div><div class="ranking-image-item"><a href="(.*?)" class="work  _work " target="_blank"><div class="_layout-thumbnail">',
